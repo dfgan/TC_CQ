@@ -1,0 +1,31 @@
+base-------
+back_bone: CascadeRCNN resnet50 + dcn
+fpn: FPN + BFP
+anchor_base: anchor_scales=[6, 16],   anchor_ratios=[0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0],
+
+train_sample:  IoUBalancedNegSampler    iou_th = 0.5, 0.6, 0.7
+
+img_train: dict(type='Resize', img_scale=(2048, 1500), keep_ratio=True),
+           mean=[156.64, 156.64, 156.64], std=[97.223122, 97.223122, 97.223122]
+
+
+img_test: img_scale=(2048, 1500),
+    imgs_per_gpu=1,
+    workers_per_gpu=2,
+optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)           #2-GPUS
+step=[10, 16, 20]   total= 24
+
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.448
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.738
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.438
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.023
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.475
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.447
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.576
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.610
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.067
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.636
+
+step=[18, 26, 32]   total= 36

@@ -1,0 +1,27 @@
+<annotation>
+  <folder>VOC2012</folder>
+  <filename>img_0029993.jpg</filename>
+  <path>E:\study_code\TC_CQ\data\train\images\img_0029993.jpg</path>
+  <source>
+    <database>yiliao</database>
+    <annotation>pascal Voc</annotation>
+  </source>
+  <size>
+    <width>658</width>
+    <height>492</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>BG</name>
+    <pose>right</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>6</xmin>
+      <ymin>5</ymin>
+      <xmax>24</xmax>
+      <ymax>23</ymax>
+    </bndbox>
+  </object>
+</annotation>
