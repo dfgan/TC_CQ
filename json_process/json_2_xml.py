@@ -80,10 +80,10 @@ def get_annotations():
         id = i['image_id']
         bbox = i['bbox']
         category = i['category_id']
-        # print(id)
-        # print(image_name[id])
+
         if category == 0:
             continue
+
         if image_name[id] not in annotations:
             annotations[image_name[id]] = [[bbox[0], bbox[1], bbox[2], bbox[3], label[category]], ]
         else:

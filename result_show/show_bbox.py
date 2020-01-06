@@ -65,7 +65,7 @@ def get_dic(data):
 if __name__ == "__main__":
     path = r'../process_after/result.json'
     img_path = r'E:\study_code\TC_CQ\data\test\images'
-    save_path = r'./show_img'
+    save_path = r'./show_imgs2'
 
     data = get_dic(read_json(path))
 
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         bboxes = data[name]
         img = cv2.imread(name_path)
         for bbox in bboxes:
-            if bbox[5] < 0.2:
+            if bbox[5] < 0.15:
                 continue
             img = cv2.rectangle(img, (int(bbox[0]), int(bbox[1])),(int(bbox[0]+bbox[2]), int(bbox[1]+bbox[3])),
                                 (0, 0, 255), thickness=1)

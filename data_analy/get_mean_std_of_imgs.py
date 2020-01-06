@@ -7,11 +7,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.misc import imread
 
-file_path = r'E:\study_code\VOC2012\VOCtrainval_11-May-2012\VOCdevkit\VOC2012\JPEGImages'
+file_path = r'E:\study_code\TC_CQ\data\train\images'
 file_name = os.listdir(file_path)
 num_files = len(file_name)
 
-num = 4096 * 3000 * num_files
+#small
+num = 658 * 492 * (num_files - 411)
+#big
+# num = 4096 * 3000 * 411
 
 imgs = []
 R_channel = 0
@@ -19,6 +22,9 @@ G_channel = 0
 B_channel = 0
 for i in range(num_files):
     img = imread(os.path.join(file_path, file_name[i]))
+    # print(img.shape)
+    if img.shape[0] > 1000:
+        continue
     R_channel = R_channel + np.sum(img[:, :, 0])
     G_channel = G_channel + np.sum(img[:, :, 1])
     B_channel = B_channel + np.sum(img[:, :, 2])
@@ -32,6 +38,8 @@ G_channel = 0
 B_channel = 0
 for i in range(num_files):
     img = imread(os.path.join(file_path, file_name[i]))
+    if img.shape[0] > 1000:
+        continue
     R_channel = R_channel + np.sum(np.power(img[:, :, 0] - R_mean, 2))
     G_channel = G_channel + np.sum(np.power(img[:, :, 1] - G_mean, 2))
     B_channel = B_channel + np.sum(np.power(img[:, :, 2] - B_mean, 2))
@@ -47,10 +55,10 @@ print("R_G_B_std is %f, %f, %f" % (R_std, G_std, B_std))
 
 '''
 big_img:
-R_G_B_mean is 156.639888, 156.639888, 156.639888
-R_G_B_std is 97.223122, 97.223122, 97.223122
+R_G_B_mean is 155.038363, 155.038363, 155.038363
+R_G_B_std is 97.321989, 97.321989, 97.321989
 
 small_img:
-R_G_B_mean is 0.983618, 1.301052, 1.896561
-R_G_B_std is 9.994623, 12.145212, 17.190142
+R_G_B_mean is 37.375027, 49.355819, 71.854576
+R_G_B_std is 49.605803, 57.121447, 79.052171
 '''
